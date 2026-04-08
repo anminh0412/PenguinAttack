@@ -28,28 +28,28 @@ namespace Manager
 
         public virtual void Tick() { }
 
-        private void OnCollisionEnter(Collision collision)
-        {
-            var other = collision.gameObject.GetComponent<Entity>();
-            if (other == null) return;
-            if (other.rb == null) return;
-            if (collidedRigidbodies.Contains(other.rb)) return;
-            collidedRigidbodies.Add(other.rb);
-
-            var directionToTarget = (other.transform.position - transform.position).normalized;
-            var pushDirection     = -directionToTarget;
-            var pushForce         = pushDirection * (shotData.LaunchScale * force);
-
-            rb.linearVelocity  = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-
-            other.rb.linearVelocity  = Vector3.zero;
-            other.rb.angularVelocity = Vector3.zero;
-            other.rb.WakeUp();
-            other.rb.AddForce(pushForce, ForceMode.Impulse);
-            Debug.DrawRay(other.transform.position, pushForce, Color.red, 1.5f);
-            Debug.LogError(other.gameObject.name + "_" + pushForce);
-        }
+        // private void OnCollisionEnter(Collision collision)
+        // {
+        //     var other = collision.gameObject.GetComponent<Entity>();
+        //     if (other == null) return;
+        //     if (other.rb == null) return;
+        //     if (collidedRigidbodies.Contains(other.rb)) return;
+        //     collidedRigidbodies.Add(other.rb);
+        //
+        //     var directionToTarget = (other.transform.position - transform.position).normalized;
+        //     var pushDirection     = -directionToTarget;
+        //     var pushForce         = pushDirection * (shotData.LaunchScale * force);
+        //
+        //     rb.linearVelocity  = Vector3.zero;
+        //     rb.angularVelocity = Vector3.zero;
+        //
+        //     other.rb.linearVelocity  = Vector3.zero;
+        //     other.rb.angularVelocity = Vector3.zero;
+        //     other.rb.WakeUp();
+        //     other.rb.AddForce(pushForce, ForceMode.Impulse);
+        //     Debug.DrawRay(other.transform.position, pushForce, Color.red, 1.5f);
+        //     Debug.LogError(other.gameObject.name + "_" + pushForce);
+        // }
 
         public virtual void Shoot()
         {
@@ -76,8 +76,13 @@ namespace Manager
             seq.AppendCallback(() =>
             {
                 arrow.localScale = new Vector3(1f, 1f, 0f);
-                if (rb != null && shotData.LaunchScale > 0f)
+                if (rb && shotData.LaunchScale > 0f)
+                {
                     rb.AddForce(shotData.LaunchDir * (shotData.LaunchScale * force), ForceMode.Impulse);
+                    // Debug.LogWarning(gameObject.name + "_" + shotData.LaunchDir * (shotData.LaunchScale * force));
+                }
+
+                this.shotData = null;
             });
         }
     }

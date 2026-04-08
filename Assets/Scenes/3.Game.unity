@@ -391,11 +391,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c6477a79d745c7b112141d453dfc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayManager: {fileID: 548036442}
   arrow: {fileID: 1129844746}
   rb: {fileID: 204521644}
-  tweenDuration: 1
   force: 5
+  tweenDuration: 1
+  gamePlayManager: {fileID: 548036442}
 --- !u!54 &204521644
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -430,7 +430,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 204521642}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3a1d40b948889084e9fccde71da43ff9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -921,11 +921,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c6477a79d745c7b112141d453dfc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayManager: {fileID: 548036442}
   arrow: {fileID: 474647575}
   rb: {fileID: 651686824}
-  tweenDuration: 1
   force: 5
+  tweenDuration: 1
+  gamePlayManager: {fileID: 548036442}
 --- !u!54 &651686824
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -960,7 +960,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 651686822}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3a1d40b948889084e9fccde71da43ff9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1188,11 +1188,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 93c6477a79d745c7b112141d453dfc7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gamePlayManager: {fileID: 548036442}
   arrow: {fileID: 84763594}
   rb: {fileID: 805117152}
-  tweenDuration: 1
   force: 5
+  tweenDuration: 1
+  gamePlayManager: {fileID: 548036442}
 --- !u!54 &805117152
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1244,7 +1244,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805117150}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3a1d40b948889084e9fccde71da43ff9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1808,7 +1808,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1708117624}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 3a1d40b948889084e9fccde71da43ff9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1916,14 +1916,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d988da42784f8eade7f25fbdf3e378, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   arrow: {fileID: 1699217855}
   rb: {fileID: 1708117629}
   force: 3
+  tweenDuration: 1
+  inputAsset: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   rotateSpeed: 90
   maxArrowScale: 5
   scaleSpeed: 3
-  tweenDuration: 1
 --- !u!1 &1793617216
 GameObject:
   m_ObjectHideFlags: 0
