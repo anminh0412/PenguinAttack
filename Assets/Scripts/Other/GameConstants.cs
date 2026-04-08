@@ -4,6 +4,7 @@
     {
         public const string LoadingSceneName = "1.Loading";
         public const string MainSceneName = "2.Main";
+        public const string GameSceneName = "3.Game";
         public class CurrencyKey
         {
             public const string Coin        = "Coin";

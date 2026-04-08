@@ -1,5 +1,6 @@
-﻿using System;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
+using Screens.Manager;
+using Screens.Screen;
 using UnityEngine;
 
 namespace Manager
@@ -8,7 +9,12 @@ namespace Manager
     {
         private void Start()
         {
-            TransitionManager.Instance.Outro(0.5f).Forget();
+            LoadMain();
+        }
+
+        private async void LoadMain()
+        {
+             ScreenManager.Instance.OpenScreen<MainScreen>().Forget();
         }
     }
 }
