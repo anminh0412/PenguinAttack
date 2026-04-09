@@ -744,6 +744,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cinemachineCamera: {fileID: 383239986}
   sensitivity: 0.065
+  minVerticalAngle: -80
+  maxVerticalAngle: 80
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  collisionRadius: 0.3
+  minDistance: 1
+  collisionSmoothSpeed: 15
+  recoverSmoothSpeed: 3
 --- !u!1 &474647574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1170,7 @@ GameObject:
   - component: {fileID: 795662439}
   - component: {fileID: 795662438}
   - component: {fileID: 795662437}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}
