@@ -25,4 +25,10 @@
     {
         public string Content { get; set; }
     }
+    
+    public class UpdateCurrency
+    {
+        public string Key;
+        public int    Value;
+    }
 }
