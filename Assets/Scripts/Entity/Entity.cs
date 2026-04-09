@@ -62,5 +62,27 @@ namespace Manager
                 this.shotData = null;
             });
         }
+
+        public virtual void OnDead()
+        {
+            transform.DOKill();
+
+            if (rb != null)
+            {
+                rb.linearVelocity = Vector3.zero;
+                rb.angularVelocity = Vector3.zero;
+                rb.isKinematic = true;
+            }
+
+            foreach (var comp in GetComponents<MonoBehaviour>())
+            {
+                comp.enabled = false;
+            }
+
+            // foreach (var col in GetComponents<Collider>())
+            // {
+            //     col.enabled = false;
+            // }
+        }
     }
 }
