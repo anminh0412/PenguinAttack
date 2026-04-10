@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Other;
 using Screens.Common;
 
@@ -25,6 +25,15 @@ namespace Screens.Manager
             newScreen.OpenScreen();
             this.screens[screenName] = newScreen;
             this.CurrentScreen       = screenName;
+        }
+
+        /// <summary>Returns the cached screen instance of type T, or null if not yet opened.</summary>
+        public T GetScreen<T>() where T : BaseScreen
+        {
+            var screenName = typeof(T).Name;
+            if (this.screens.TryGetValue(screenName, out var screen) && screen is T typed)
+                return typed;
+            return null;
         }
 
         public void TriggerScreen<T>() where T : BaseScreen

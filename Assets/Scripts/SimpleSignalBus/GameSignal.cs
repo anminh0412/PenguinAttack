@@ -1,4 +1,4 @@
-﻿namespace SimpleSignalBus
+namespace SimpleSignalBus
 {
     public class StartGameSignal
     {
@@ -30,5 +30,10 @@
     {
         public string Key;
         public int    Value;
+    }
+
+    public class EntityDeadSignal
+    {
+        public string EntityName { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using Plugins.Tick;
+using SimpleSignalBus;
 using Tick;
 using UnityEngine;
 
@@ -8,6 +9,7 @@ namespace Manager
 {
     public class Entity : MonoBehaviour, ITickable, IShoot
     {
+        public string     entityName;
         public Transform  arrow;
         public Rigidbody  rb;
         public float      force         = 5f;
@@ -69,10 +71,14 @@ namespace Manager
 
             if (rb != null)
             {
-                rb.linearVelocity = Vector3.zero;
+                rb.linearVelocity  = Vector3.zero;
                 rb.angularVelocity = Vector3.zero;
-                rb.isKinematic = true;
+                rb.isKinematic     = true;
             }
+
+            // Bắn signal để GamePlayManager hiển thị UI notification
+            var name = string.IsNullOrEmpty(entityName) ? gameObject.name : entityName;
+            SignalBus.Fire(new EntityDeadSignal { EntityName = name });
 
             foreach (var comp in GetComponents<MonoBehaviour>())
             {
