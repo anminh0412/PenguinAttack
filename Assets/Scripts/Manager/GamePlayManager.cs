@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 namespace Manager
@@ -17,6 +18,7 @@ namespace Manager
 
         private void Start()
         {
+            TransitionManager.Instance.Outro(1).Forget();
             EnterInputPhase();
         }
 
