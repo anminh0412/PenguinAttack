@@ -1,4 +1,4 @@
-namespace SimpleSignalBus
+﻿namespace SimpleSignalBus
 {
     public class StartGameSignal
     {
@@ -33,6 +33,13 @@ namespace SimpleSignalBus
     }
 
     public class EntityDeadSignal
+    {
+        public string EntityName { get; set; }
+    }
+
+    public class PlayerDeadSignal { }
+
+    public class BotDeadSignal
     {
         public string EntityName { get; set; }
     }

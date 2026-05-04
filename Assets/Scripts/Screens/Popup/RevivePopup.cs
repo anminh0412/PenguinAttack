@@ -1,3 +1,4 @@
+﻿using System;
 using Screens.Common;
 using TMPro;
 using UnityEngine.UI;
@@ -8,8 +9,12 @@ namespace Screens.Popup
     {
         public Button btnReviveByAds;
         public Button btnReviveByGems;
-        public Button btnClose;
+        public Button btnLose;
         public TextMeshProUGUI tmpGemCost;
+
+        public Action OnRevive;
+
+        public Action OnLose;
 
         protected override void Initialize()
         {
@@ -21,21 +26,24 @@ namespace Screens.Popup
         {
             btnReviveByAds.onClick.AddListener(OnClickReviveByAds);
             btnReviveByGems.onClick.AddListener(OnClickReviveByGems);
-            btnClose.onClick.AddListener(OnClickClose);
+            btnLose.onClick.AddListener(OnClickLose);
         }
 
         private void OnClickReviveByAds()
         {
-            
+            OnRevive?.Invoke();
+            CloseScreen();
         }
 
         private void OnClickReviveByGems()
         {
-            
+            OnRevive?.Invoke();
+            CloseScreen();
         }
 
-        private void OnClickClose()
+        private void OnClickLose()
         {
+            OnLose?.Invoke();
             CloseScreen();
         }
     }

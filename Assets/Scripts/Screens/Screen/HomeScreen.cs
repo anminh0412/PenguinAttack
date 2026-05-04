@@ -1,4 +1,4 @@
-using Screens.Common;
+﻿using Screens.Common;
 using UnityEngine.UI;
 
 namespace Screens.Screen

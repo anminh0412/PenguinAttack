@@ -1,12 +1,10 @@
-using UnityEngine;
+﻿using UnityEngine;
 using Unity.Cinemachine;
 
 public class CameraController : MonoBehaviour
 {
-    [Header("Cinemachine")]
     [SerializeField] private CinemachineCamera cinemachineCamera;
 
-    [Header("Zoom Settings")]
     [SerializeField] private float minZoomDistance = 3f;
     [SerializeField] private float maxZoomDistance = 20f;
     [SerializeField] private float zoomSpeed       = 0.01f;
@@ -17,17 +15,13 @@ public class CameraController : MonoBehaviour
 
     private float lastPinchDistance;
 
-    // ── Lifecycle ─────────────────────────────────────────────────────────────
-
     private void Awake()
     {
         orbitalFollow       = cinemachineCamera.GetComponent<CinemachineOrbitalFollow>();
         inputAxisController = cinemachineCamera.GetComponent<CinemachineInputAxisController>();
 
-        // Tắt input controller mặc định, chỉ bật khi Click Hold
         inputAxisController.enabled = false;
 
-        // Clamp radius ban đầu vào giới hạn zoom
         orbitalFollow.Radius = Mathf.Clamp(orbitalFollow.Radius, minZoomDistance, maxZoomDistance);
     }
 
@@ -37,11 +31,8 @@ public class CameraController : MonoBehaviour
         HandleZoom();
     }
 
-    // ── Input ─────────────────────────────────────────────────────────────────
-
     private void HandleOrbitInput()
     {
-        // Không xử lý orbit khi đang pinch
         if (Input.touchCount >= 2)
         {
             inputAxisController.enabled = false;
@@ -50,7 +41,6 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            // Bỏ qua nếu click trúng UI
             if (UnityEngine.EventSystems.EventSystem.current != null &&
                 UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
                 return;
@@ -63,11 +53,8 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    // ── Zoom ──────────────────────────────────────────────────────────────────
-
     private void HandleZoom()
     {
-        // Mobile: pinch 2 ngón tay
         if (Input.touchCount == 2)
         {
             Touch touch0 = Input.GetTouch(0);
@@ -88,7 +75,6 @@ public class CameraController : MonoBehaviour
             return;
         }
 
-        // PC: mouse scroll wheel
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (Mathf.Abs(scroll) > 0.001f)
             orbitalFollow.Radius = Mathf.Clamp(orbitalFollow.Radius - scroll * scrollZoomSpeed, minZoomDistance, maxZoomDistance);

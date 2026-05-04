@@ -1,4 +1,4 @@
-using Data;
+﻿using Data;
 using UnityEngine;
 
 namespace Services
@@ -30,5 +30,7 @@ namespace Services
             PlayerPrefs.SetString(USER_DATA_KEY, json);
             PlayerPrefs.Save();
         }
+
+        public static void SaveNow() => Save();
     }
 }

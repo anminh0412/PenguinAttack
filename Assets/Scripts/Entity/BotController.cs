@@ -1,11 +1,10 @@
-using Plugins.Tick;
+﻿using Plugins.Tick;
 using UnityEngine;
 
 namespace Manager
 {
     public class BotController : Entity, ITickable, IShoot
     {
-        public GamePlayManager gamePlayManager;
 
         public void RandomShot()
         {

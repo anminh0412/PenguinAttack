@@ -1,4 +1,4 @@
-﻿using Currency;
+using Currency;
 using Other;
 using Plugins.Tick;
 using UnityEngine;
@@ -32,6 +32,10 @@ namespace Data
     [System.Serializable]
     public class GamePlayData
     {
-        public bool IsWon;
+        public bool  IsWon;
+        public bool  IsGameOver;
+        public bool  IsReviveUsed;
+        public float Timer;
+        public int   CurrentPhase;
     }
 }

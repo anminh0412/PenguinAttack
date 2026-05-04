@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using Unity.Cinemachine;
@@ -8,20 +8,22 @@ namespace Manager
     public class PlayerController : Entity
     {
         public CinemachineCamera cinemachineCamera;
-        public GetUIInputEvent uiInputEvent;
         public float rotateSpeed   = 90f;
         public float maxArrowScale = 5f;
         public float scaleSpeed    = 3f;
         public float joystickDeadzone = 0.15f;
 
-        private bool    isHolding;
-        private float   savedYRotation;
-        private float   currentArrowScale;
-        private Vector2 pressPosition;
- 
+        private bool            isHolding;
+        private float           savedYRotation;
+        private float           currentArrowScale;
+        private Vector2         pressPosition;
+        private  GetUIInputEvent uiInputEvent;
+
         protected override void OnEnable()
         {
             base.OnEnable();
+
+            uiInputEvent = this.gamePlayManager.GamePlayScreen.uiInputEvent;
             if (uiInputEvent != null)
             {
                 uiInputEvent.onPointerDownEvent += OnPointerDown;
@@ -84,7 +86,6 @@ namespace Manager
             }
             base.Shoot();
         }
-
 
         public override void Tick()
         {

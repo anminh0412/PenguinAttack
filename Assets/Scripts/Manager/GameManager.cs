@@ -1,9 +1,8 @@
-﻿using Other;
+using Other;
 
 namespace Manager
 {
     public class GameManager : MonoSingleton<GameManager>
     {
-        
     }
-}
+}

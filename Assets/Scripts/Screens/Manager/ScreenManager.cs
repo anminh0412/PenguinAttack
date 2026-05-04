@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Other;
 using Screens.Common;
 
@@ -27,11 +27,18 @@ namespace Screens.Manager
             this.CurrentScreen       = screenName;
         }
 
-        /// <summary>Returns the cached screen instance of type T, or null if not yet opened.</summary>
         public T GetScreen<T>() where T : BaseScreen
         {
             var screenName = typeof(T).Name;
             if (this.screens.TryGetValue(screenName, out var screen) && screen is T typed)
+                return typed;
+            return null;
+        }
+
+        public T GetPopup<T>() where T : BaseScreen
+        {
+            var popupName = typeof(T).Name;
+            if (this.popups.TryGetValue(popupName, out var popup) && popup is T typed)
                 return typed;
             return null;
         }
@@ -72,8 +79,6 @@ namespace Screens.Manager
             }
         }
         
-        
-
         public void CloseScreen<T>() where T : BaseScreen
         {
             var screenName = typeof(T).Name;

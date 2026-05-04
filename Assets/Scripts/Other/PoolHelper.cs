@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
@@ -37,7 +37,6 @@ namespace Other
             return pool;
         }
 
-        // Skips destroyed objects still sitting in the queue
         private static bool TryDequeue(Queue<GameObject> pool, out GameObject obj)
         {
             while (pool.Count > 0)
