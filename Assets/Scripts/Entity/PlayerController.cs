@@ -23,7 +23,7 @@ namespace Manager
         {
             base.OnEnable();
 
-            uiInputEvent = this.gamePlayManager.GamePlayScreen.uiInputEvent;
+            uiInputEvent = this.gamePlayManager.gamePlayScreen.uiInputEvent;
             if (uiInputEvent != null)
             {
                 uiInputEvent.onPointerDownEvent += OnPointerDown;

@@ -27,6 +27,7 @@ namespace Manager
         {
             entityData      = data;
             gamePlayManager = manager;
+            this.gameObject.SetActive(true);
         }
 
         protected virtual void OnEnable() { TickManager.Instance.Add(this); }

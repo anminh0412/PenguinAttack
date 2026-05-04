@@ -9,6 +9,8 @@ using UnityEngine;
 
 namespace Manager
 {
+    using UnityEngine.Serialization;
+
     public class GamePlayManager : MonoBehaviour
     {
         public Transform           plane;
@@ -22,20 +24,38 @@ namespace Manager
 
         private const float PhaseDuration = 10f;
 
-        private GamePlayScreen _gamePlayScreen;
-        public GamePlayScreen GamePlayScreen => _gamePlayScreen;
+        public GamePlayScreen gamePlayScreen;
         private async void Start()
         {
             TransitionManager.Instance.Outro(1).Forget();
 
             await ScreenManager.Instance.OpenScreen<GamePlayScreen>();
-            _gamePlayScreen = ScreenManager.Instance.GetScreen<GamePlayScreen>();
+            this.gamePlayScreen = ScreenManager.Instance.GetScreen<GamePlayScreen>();
 
             playerController.OnEntityDead = OnEntityDead;
             foreach (var bot in shootAbles)
                 bot.OnEntityDead = OnEntityDead;
 
             EnterInputPhase();
+            this.InitPlayer();
+        }
+
+        private void InitPlayer()
+        {
+            var playerData = new EntityData
+            {
+                Name   = "Player",
+            };
+            this.playerController.InitEntity(playerData, this);
+
+            foreach (var bot in this.shootAbles)
+            {
+                var botData = new EntityData
+                {
+                    Name   = $"Bot_{Random.Range(1000, 9999)}",
+                };
+                bot.InitEntity(botData, this);
+            }
         }
 
         private void Update()
@@ -45,7 +65,7 @@ namespace Manager
             Data.Timer -= Time.deltaTime;
 
             if (Data.CurrentPhase == (int)GameState.InputPhase)
-                _gamePlayScreen?.UpdateAttackTime(Data.Timer, PhaseDuration);
+                this.gamePlayScreen?.UpdateAttackTime(Data.Timer, PhaseDuration);
 
             if (Data.Timer > 0f) return;
 
@@ -60,7 +80,7 @@ namespace Manager
             Data.CurrentPhase = (int)GameState.InputPhase;
             Data.Timer        = PhaseDuration;
 
-            _gamePlayScreen?.ResetAttackTime();
+            this.gamePlayScreen?.ResetAttackTime();
             playerController.enabled = true;
             BotShoot();
         }
@@ -70,7 +90,7 @@ namespace Manager
             Data.CurrentPhase = (int)GameState.ShootPhase;
             Data.Timer        = PhaseDuration;
 
-            _gamePlayScreen?.ResetAttackTime();
+            this.gamePlayScreen?.ResetAttackTime();
             playerController.enabled = false;
             ShootTime();
         }
@@ -96,7 +116,7 @@ namespace Manager
 
         private void OnEntityDead(Entity entity)
         {
-            _gamePlayScreen?.ShowEntityDeadNoti(entity.entityData.Name);
+            this.gamePlayScreen?.ShowEntityDeadNoti(entity.entityData.Name);
 
             if (entity.IsPlayer)
                 HandlePlayerDead().Forget();
@@ -109,7 +129,7 @@ namespace Manager
             if (Data.IsGameOver) return;
 
             Data.IsGameOver = true;
-            _gamePlayScreen?.ResetAttackTime();
+            this.gamePlayScreen?.ResetAttackTime();
 
             if (!Data.IsReviveUsed)
             {
@@ -135,7 +155,7 @@ namespace Manager
             {
                 Data.IsGameOver = true;
                 Data.IsWon      = true;
-                _gamePlayScreen?.ResetAttackTime();
+                this.gamePlayScreen?.ResetAttackTime();
                 await ScreenManager.Instance.OpenPopup<WinPopup>();
             }
         }
